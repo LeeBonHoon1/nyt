@@ -1,10 +1,2 @@
-export const queryOption = {
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      retry: 3,
-      refetchOnWindowFocus: false,
-    },
-  },
-}
+export const API_KEY = process.env.NEXT_PUBLIC_API_KEY
+export const BASE_URL = process.env.NEXT_PUBLIC_AUTH_DOMAIN
