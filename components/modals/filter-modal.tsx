@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
@@ -122,7 +122,7 @@ const FilterModal = () => {
                           )}
                         >
                           {field.value ? (
-                            dayjs(field.value).format("YYYY-M-D")
+                            dayjs(field.value).format("YYYY.M.D")
                           ) : (
                             <span>날짜를 선택해주세요.</span>
                           )}

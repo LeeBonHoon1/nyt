@@ -1,4 +1,4 @@
-export interface NewsProps {
+export interface NewsItems {
   abstract: string
   web_url: string
   snippet: string

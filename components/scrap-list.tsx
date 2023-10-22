@@ -4,42 +4,26 @@ import dayjs from "dayjs";
 import { cn } from "@/lib/utils";
 
 import useScrap from "@/hooks/use-scrap";
-import EmptyNews from "./empty-news";
-
-import { Loader2 } from "lucide-react";
+import EmptyScrap from "./empty-scrap";
 import { toast } from "react-hot-toast";
 
-const NewsList = ({
-  news,
-  isLoading,
-}: {
-  news: NewsItems[];
-  isLoading: boolean;
-}) => {
-  const { scrapHandler, scrapItem } = useScrap();
+const ScrapList = ({ scrap }: { scrap: NewsItems[] }) => {
+  const { scrapHandler } = useScrap();
 
-  const scrapClickHandler = (item: NewsItems, isScrapItem: boolean) => {
+  const scrapClickHandler = (item: NewsItems) => {
     scrapHandler(item);
-    toast.success(
-      isScrapItem ? "스크랩이 해제 되었습니다." : "스크랩 되었습니다."
-    );
+    toast.success("스크랩이 해제 되었습니다.");
   };
 
   return (
     <div className="px-5 py-3 space-y-2 bg-[#F0F1F4]">
-      {isLoading ? (
-        <Loader2 className="animate-spin absolute left-[50%] top-[50%]" />
-      ) : (
-        <>
-          {news.length > 0 ? (
-            news?.map((item) => {
-              const isScrapItem = scrapItem.some(
-                (scrap) => scrap.web_url === item.web_url
-              );
-
-              const { pub_date, byline, headline, web_url } = item || {};
-              return (
-                <div key={item.pub_date}>
+      <>
+        {scrap.length > 0 ? (
+          scrap?.map((item) => {
+            const { pub_date, byline, headline, web_url } = item || {};
+            return (
+              <div key={item.pub_date}>
+                {
                   <div className="px-5 py-3 bg-white border rounded-[8px] space-y-6 cursor-pointer">
                     <div className="flex items-center justify-between">
                       <div
@@ -54,10 +38,10 @@ const NewsList = ({
                       </div>
                       <div
                         className="min-w-[32px]"
-                        onClick={() => scrapClickHandler(item, isScrapItem)}
+                        onClick={() => scrapClickHandler(item)}
                       >
                         <Image
-                          src={isScrapItem ? "/star-fill.png" : "/star.png"}
+                          src={"/star-fill.png"}
                           alt="Scrap"
                           width={20}
                           height={20}
@@ -71,18 +55,18 @@ const NewsList = ({
                       <div>{dayjs(pub_date).format("YYYY.M.DD")}</div>
                     </div>
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <div className="flex items-center justify-center h-[100dvh] pb-36">
-              <EmptyNews />
-            </div>
-          )}
-        </>
-      )}
+                }
+              </div>
+            );
+          })
+        ) : (
+          <div className="flex items-center justify-center h-[100dvh] pb-36">
+            <EmptyScrap />
+          </div>
+        )}
+      </>
     </div>
   );
 };
 
-export default NewsList;
+export default ScrapList;

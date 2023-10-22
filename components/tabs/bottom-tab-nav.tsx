@@ -22,10 +22,15 @@ const BottomTabNav = () => {
         return (
           <div
             key={item.href}
-            className=""
+            className="flex flex-col items-center space-y-2 cursor-pointer"
             onClick={() => router.push(item.href)}
           >
-            {/* <Image src={"/public/home.png"} height={28} width={28} alt="Icon" /> */}
+            <Image
+              src={`/${item.icon}.png`}
+              height={20}
+              width={20}
+              alt="Icon"
+            />
             <div className="text-[white]">{item.label}</div>
           </div>
         );
