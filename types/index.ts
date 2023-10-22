@@ -78,3 +78,9 @@ export interface Person {
   organization: string
   rank: number
 }
+
+export interface FilterItem {
+  headline: string
+  date: string
+  filterTags: string[]
+}

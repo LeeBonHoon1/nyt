@@ -1,11 +1,12 @@
 import APIs from "@/common/apis";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetNews = (page: number = 0) => {
+const useGetNews = (headline: string = "", date: string = "", tags: string = "") => {
   const { data, isPending, error, isLoading } = useQuery(
     {
-      queryKey: ['news', page],
-      queryFn: () => APIs.getNews(page),
+      queryKey: ['news', headline, date, tags],
+      queryFn: () => APIs.getNews(headline, date, tags),
+      retry: 1
     },
   )
 

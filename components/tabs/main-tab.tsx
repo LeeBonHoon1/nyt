@@ -21,7 +21,7 @@ const MainTabNav = () => {
   ];
 
   return (
-    <nav className="flex h-[60px] items-center min-w-[560px] w-full gap-[7px] px-[20px] bg-[white]">
+    <nav className="flex h-[60px] items-center min-w-[560px] w-full gap-[7px] px-[20px] bg-[white] cursor-pointer">
       {filterItems.map((filterItem) => (
         <div
           key={filterItem.id}
