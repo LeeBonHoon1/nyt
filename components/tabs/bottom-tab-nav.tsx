@@ -6,14 +6,25 @@ interface Routes {
   href: string;
   label: string;
   icon: string;
+  active: boolean;
 }
 
 const BottomTabNav = () => {
   const router = useRouter();
 
   const routes: Routes[] = [
-    { href: "/home", label: "홈", icon: "home" },
-    { href: "/scrap", label: "스크랩", icon: "scrap" },
+    {
+      href: "/home",
+      label: "홈",
+      icon: "home",
+      active: location.pathname === "/home",
+    },
+    {
+      href: "/scrap",
+      label: "스크랩",
+      icon: "scrap",
+      active: location.pathname === "/scrap",
+    },
   ];
 
   return (
@@ -26,7 +37,7 @@ const BottomTabNav = () => {
             onClick={() => router.push(item.href)}
           >
             <Image
-              src={`/${item.icon}.png`}
+              src={item.active ? `/${item.icon}.png` : `/${item.icon}.png`}
               height={20}
               width={20}
               alt="Icon"

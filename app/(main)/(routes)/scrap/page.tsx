@@ -6,14 +6,14 @@ import useScrap from "@/hooks/use-scrap";
 import ScrapList from "@/components/scrap-list";
 
 const ScrapPage = () => {
-  const [isMount, setIsMount] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { scrapItem } = useScrap();
 
   useEffect(() => {
-    setIsMount(true);
+    setIsMounted(true);
   }, []);
 
-  if (!isMount) return null;
+  if (!isMounted) return null;
 
   return (
     <main className="overflow-scroll h-[100dvh] pb-32 scrollbar-hide">
