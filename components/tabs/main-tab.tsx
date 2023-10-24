@@ -6,7 +6,7 @@ import { useStoreModal } from "@/hooks/use-modal";
 import dayjs from "dayjs";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { convertLanguage } from "@/lib/language";
+import { convertLanguage } from "@/utils/convert-language";
 
 const MainTabNav = () => {
   const [isMounted, setIsMounted] = useState(false);

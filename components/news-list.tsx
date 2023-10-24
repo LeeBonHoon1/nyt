@@ -17,6 +17,7 @@ import { Doc } from "@/types";
 
 import EmptyNews from "./empty-news";
 import { LoadingSkeleton } from "./loading-skeleton";
+import { getDate, getDayOfWeek } from "@/utils/day-utils";
 
 const NewsList = () => {
   const { ref, inView } = useInView({
@@ -92,9 +93,11 @@ const NewsList = () => {
                     </div>
                     <div className="flex items-center justify-between text-sm text-[#6D6D6D]">
                       <div className="text-[#000000] truncate w-[140px]">
-                        {byline.original}
+                        {byline.original || "No infomation"}
                       </div>
-                      <div>{dayjs(pub_date).format("YYYY.M.DD")}</div>
+                      <div>
+                        {`${getDate(pub_date)} ${getDayOfWeek(pub_date)}`}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -102,8 +105,9 @@ const NewsList = () => {
             })
           )}
           {error && (
-            <div className="flex items-center justify-center px-4 py-1 text-[#82B0F4]">
-              너무 많은 요청으로 문제가 발생습니다. 잠시 후 다시 시도해주세요!
+            <div className="flex flex-col items-center justify-center px-4 py-1 text-[#82B0F4]">
+              <span>너무 많은 요청으로 문제가 발생습니다.</span>
+              <span>잠시 후 다시 시도해주세요!</span>
             </div>
           )}
           {!error && isFetching && <LoadingSkeleton />}

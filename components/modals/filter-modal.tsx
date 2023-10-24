@@ -27,7 +27,7 @@ import { toast } from "react-hot-toast";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
-import { Languages } from "@/components/language";
+import { Languages } from "@/common/language";
 
 import { ModalProps } from "@/components/ui/modal";
 

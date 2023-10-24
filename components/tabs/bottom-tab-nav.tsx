@@ -4,6 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface Routes {
   href: string;
@@ -61,7 +62,14 @@ const BottomTabNav = () => {
               width={20}
               alt="Icon"
             />
-            <div className="text-[white]">{item.label}</div>
+            <div
+              className={cn(
+                `text-[#6D6D6D]`,
+                pathname === item.href && `text-[white]`
+              )}
+            >
+              {item.label}
+            </div>
           </div>
         );
       })}
