@@ -37,7 +37,7 @@ const formSchema = z.object({
   filterTags: z.string().array(),
 });
 
-const FilterModal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
+const FilterModal = () => {
   const { addFilterTag } = useFilter();
   const { isOpen, onClose } = useStoreModal();
 
@@ -88,7 +88,7 @@ const FilterModal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={closeModal} ref={ref}>
+    <Modal isOpen={isOpen} onClose={closeModal}>
       <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -191,8 +191,6 @@ const FilterModal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       </div>
     </Modal>
   );
-});
-
-FilterModal.displayName = "FilterModal";
+};
 
 export default FilterModal;
