@@ -1,5 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
+
+import { useRouter, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 
 interface Routes {
@@ -10,6 +13,8 @@ interface Routes {
 }
 
 const BottomTabNav = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
   const router = useRouter();
 
   const routes: Routes[] = [
@@ -17,15 +22,25 @@ const BottomTabNav = () => {
       href: "/home",
       label: "홈",
       icon: "home",
-      active: location.pathname === "/home",
+      active: false,
     },
     {
       href: "/scrap",
       label: "스크랩",
       icon: "scrap",
-      active: location.pathname === "/scrap",
+      active: false,
     },
   ];
+
+  const bottomTabClickHandler = (item: Routes) => {
+    router.push(item.href);
+  };
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <nav className="flex fixed bottom-0 h-[75px] bg-[black] max-w-[560px] w-full justify-around rounded-3xl items-center m-auto">
@@ -34,10 +49,14 @@ const BottomTabNav = () => {
           <div
             key={item.href}
             className="flex flex-col items-center space-y-2 cursor-pointer"
-            onClick={() => router.push(item.href)}
+            onClick={() => bottomTabClickHandler(item)}
           >
             <Image
-              src={item.active ? `/${item.icon}.png` : `/${item.icon}.png`}
+              src={
+                pathname === item.href
+                  ? `/${item.icon}-fill.png`
+                  : `/${item.icon}.png`
+              }
               height={20}
               width={20}
               alt="Icon"

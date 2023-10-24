@@ -1,12 +1,11 @@
 "use client";
 
+import React, { forwardRef } from "react";
 import { useCallback } from "react";
 import * as z from "zod";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useFilter from "@/hooks/use-filter";
-
 import Modal from "@/components/ui/modal";
 import {
   Form,
@@ -30,13 +29,15 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { Languages } from "@/components/language";
 
+import { ModalProps } from "@/components/ui/modal";
+
 const formSchema = z.object({
   headLine: z.string(),
   date: z.string().or(z.date()),
   filterTags: z.string().array(),
 });
 
-const FilterModal = () => {
+const FilterModal = forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const { addFilterTag } = useFilter();
   const { isOpen, onClose } = useStoreModal();
 
@@ -85,8 +86,9 @@ const FilterModal = () => {
     toast.success("반영 되었습니다");
     closeModal();
   };
+
   return (
-    <Modal isOpen={isOpen} onClose={closeModal}>
+    <Modal isOpen={isOpen} onClose={closeModal} ref={ref}>
       <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -189,6 +191,8 @@ const FilterModal = () => {
       </div>
     </Modal>
   );
-};
+});
+
+FilterModal.displayName = "FilterModal";
 
 export default FilterModal;

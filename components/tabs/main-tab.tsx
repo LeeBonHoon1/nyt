@@ -6,6 +6,7 @@ import { useStoreModal } from "@/hooks/use-modal";
 import dayjs from "dayjs";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { convertLanguage } from "@/lib/language";
 
 const MainTabNav = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -29,8 +30,10 @@ const MainTabNav = () => {
     {
       id: 3,
       title:
-        filterTags && filterTags.length > 1
-          ? `${filterTags[0]}외 ${filterTags.length - 1}`
+        filterTags && filterTags.length === 1
+          ? `${convertLanguage(filterTags)[0]}`
+          : filterTags.length > 1
+          ? `${convertLanguage(filterTags)[0]} 외 ${filterTags.length - 1}`
           : "전체 국가",
       active: filterTags.length > 0,
     },
