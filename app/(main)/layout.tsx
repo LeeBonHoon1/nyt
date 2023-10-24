@@ -1,6 +1,7 @@
+import { PropsWithChildren } from "react";
+
 import BottomTabNav from "@/components/tabs/bottom-tab-nav";
 import MainTabNav from "@/components/tabs/main-tab";
-import { PropsWithChildren } from "react";
 
 const HomeLayout = ({ children }: PropsWithChildren) => {
   return (

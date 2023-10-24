@@ -1,13 +1,14 @@
 "use client";
 
-import { Doc } from "@/types";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 import dayjs from "dayjs";
-import { cn } from "@/lib/utils";
 
+import { cn } from "@/lib/utils";
 import useScrap from "@/hooks/use-scrap";
 import EmptyScrap from "./empty-scrap";
-import { toast } from "react-hot-toast";
+
+import { Doc } from "@/types";
 
 const ScrapList = () => {
   const { scrapHandler, scrapItem } = useScrap();

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { PropsWithChildren } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
 import { QueryProvider } from "@/components/providers/query-provider";
 import ToastProvider from "@/components/providers/toast-provider";
 import { ModalProvider } from "@/components/providers/modal-provider";
-import { PropsWithChildren } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import useFilter from "@/hooks/use-filter";
-import { useStoreModal } from "@/hooks/use-modal";
-import dayjs from "dayjs";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+import dayjs from "dayjs";
+
+import { cn } from "@/lib/utils";
 import { convertLanguage } from "@/utils/convert-language";
+import { useStoreModal } from "@/hooks/use-modal";
+import useFilter from "@/hooks/use-filter";
 
 const MainTabNav = () => {
   const [isMounted, setIsMounted] = useState(false);

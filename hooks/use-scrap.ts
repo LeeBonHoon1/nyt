@@ -1,10 +1,10 @@
-import { NewsItems } from '@/types';
+import { Doc } from '@/types';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface ScrapStore {
-  scrapItem: NewsItems[];
-  scrapHandler: (data: NewsItems) => void;
+  scrapItem: Doc[];
+  scrapHandler: (data: Doc) => void;
 }
 
 const useScrap = create(
