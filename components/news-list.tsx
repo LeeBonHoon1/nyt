@@ -1,11 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 import Image from "next/image";
-import dayjs from "dayjs";
 import { toast } from "react-hot-toast";
 
 import useFilter from "@/hooks/use-filter";

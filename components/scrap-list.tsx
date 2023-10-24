@@ -1,4 +1,6 @@
-import { NewsItems } from "@/types";
+"use client";
+
+import { Doc } from "@/types";
 import Image from "next/image";
 import dayjs from "dayjs";
 import { cn } from "@/lib/utils";
@@ -7,10 +9,10 @@ import useScrap from "@/hooks/use-scrap";
 import EmptyScrap from "./empty-scrap";
 import { toast } from "react-hot-toast";
 
-const ScrapList = ({ scrap }: { scrap: NewsItems[] }) => {
-  const { scrapHandler } = useScrap();
+const ScrapList = () => {
+  const { scrapHandler, scrapItem } = useScrap();
 
-  const scrapClickHandler = (item: NewsItems) => {
+  const scrapClickHandler = (item: Doc) => {
     scrapHandler(item);
     toast.success("스크랩이 해제 되었습니다.");
   };
@@ -18,8 +20,8 @@ const ScrapList = ({ scrap }: { scrap: NewsItems[] }) => {
   return (
     <div className="px-5 py-3 space-y-2 bg-[#F0F1F4]">
       <>
-        {scrap.length > 0 ? (
-          scrap?.map((item) => {
+        {scrapItem.length > 0 ? (
+          scrapItem?.map((item) => {
             const { pub_date, byline, headline, web_url } = item || {};
             return (
               <div key={item.pub_date}>
