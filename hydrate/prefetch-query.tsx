@@ -6,7 +6,7 @@ import { PropsWithChildren } from "react";
 export const PrefetchQuery = async ({ children }: PropsWithChildren) => {
   const queryClient = getHydrateQueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["news", "", "", "", 0],
+    queryKey: ["news"],
     queryFn: ({ pageParam = 0 }) => NewsAPIs.getNews("", "", "", pageParam),
   });
 

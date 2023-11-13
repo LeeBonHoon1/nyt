@@ -7,6 +7,7 @@ const useGetNews = (headline: string = "", date: string = "", tags: string = "",
     queryFn: ({ pageParam = 0 }) => APIs.getNews(headline, date, tags, pageParam),
     getNextPageParam: (lastPage, pages) => {
       const { meta } = lastPage || {};
+      console.log(meta.hits, pages.length, meta.offset)
       if (meta.hits - 10 > pages.length * 10) {
         return meta.offset / 10 + 1
       } else {
